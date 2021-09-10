@@ -76,7 +76,12 @@ const handleWrongGuess = () => {
   sharkImage.setAttribute("src", `/static/images/guess${numWrong}.png`);
 
   if (numWrong === 5) {
-    disableLetterButton(ALPHABET);
+    
+    const letterButtons = document.querySelectorAll("button");
+
+    for (const singleButton in letterButtons) {
+      disableLetterButton(letterButtons[singleButton]);
+    }
     document.querySelector("#play-again").style.diplay = "";
   }
 };

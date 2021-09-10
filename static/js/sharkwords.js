@@ -59,8 +59,11 @@ const isLetterInWord = (letter) => {
 //
 const handleCorrectGuess = (letter) => {
   // Replace this with your code
-  const correctLetter = document.querySelector(`div.${letter}`);
-  correctLetter.innerHTML = `${letter}`;
+  const correctLetterDivs = document.querySelectorAll(`div.${letter}`);
+
+  for (const index in correctLetterDivs){
+    correctLetterDivs[index].innerHTML = `${letter}`;
+  }
 };
 
 //
@@ -82,7 +85,7 @@ const handleWrongGuess = () => {
     for (const singleButton in letterButtons) {
       disableLetterButton(letterButtons[singleButton]);
     }
-    document.querySelector("#play-again").style.diplay = "";
+    document.querySelector("#play-again").style.display = "";
   }
 };
 
@@ -102,19 +105,26 @@ const resetGame = () => {
 
   // add an event handler to handle clicking on a letter
   // YOUR CODE HERE
+  const allButtons = document.querySelectorAll("button")
 
-  // document.querySelector("button").addEventListener("click", (evt) => {
-  //   const clickedBtn = evt.target;
-  // })
-  // disableLetterButton(clickenBtn);
+  for (const singleButton of allButtons){
+    singleButton.addEventListener("click", (evt) => {
+      const clickedBtn = evt.target;
+      disableLetterButton(clickedBtn);
 
-  // const letterGuess = isLetterInWord(clickedBtn)
+      console.log(clickedBtn);
 
-  // if (letterGuess === true) {
-  //   handleCorrectGuess(clickedBtn)
-  // } else if (letterGuess === false) {
-  //   handleWrongGuess()
-  // }
+      const letterGuess = isLetterInWord(singleButton.innerHTML)
+
+      if (letterGuess === true) {
+        handleCorrectGuess(singleButton.innerHTML);
+      } else if (letterGuess === false) {
+        handleWrongGuess();
+      }
+    });
+  }
+
+
 
   // add an event handler to handle clicking on the Play Again button
   // YOUR CODE HERE

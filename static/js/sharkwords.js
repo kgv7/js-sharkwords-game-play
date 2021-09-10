@@ -124,8 +124,18 @@ const resetGame = () => {
     });
   }
 
-
+  // when word is complete, add congrats message
+  // const completedWord = document.querySelectorAll(".letterbox");
+  // for (const letter of completedWord){
+  //   if letter.
+  //   };
 
   // add an event handler to handle clicking on the Play Again button
   // YOUR CODE HERE
+  const playAgain = document.querySelector("a")
+  playAgain.addEventListener("click", (evt) => {
+    const clickedPlayAgain = evt.target;
+    resetGame();
+  });
+
 })();
